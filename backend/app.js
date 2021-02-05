@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const cors = require("cors");
 require("dotenv").config();
+const adminRoute = require("./routes/admin");
 
 const app = express();
 
@@ -18,15 +19,15 @@ app.use(express.urlencoded({ extended: false }));
 //serving static files
 app.use("/static", express.static(path.join(`${__dirname} / public`)));
 
-app.get("/", (req, res) => res.send("Home route"));
+app.get("/", adminRoute);
 
 const port = process.env.PORT || 8080;
 
 mongoose
   .connect(process.env.DB_HOST, {
     useCreateIndex: true,
-    useNewUrlParser: true,
     useUnifiedTopology: true,
+    useNewUrlParser: true,
     useFindAndModify: false,
   })
   .then(() => {
