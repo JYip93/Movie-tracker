@@ -1,7 +1,25 @@
 const Movie = require("../models/movie");
 
-exports.getIndex = (req, res) => {
-  res.status(200).render("index");
+exports.getIndex = async (req, res) => {
+  const movie = await Movie.find((data) => {
+    data;
+  });
+  try {
+    console.log(movie);
+    res.status(200).render("index", { movie: movie });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+exports.getMovie = async (req, res) => {
+  const movieId = req.params.movieId;
+  const movie = await Movie.findById(movieId, (movie) => movie);
+  try {
+    res.status(200).render("movie", { movie: movie });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 exports.getAddMovie = (req, res) => {

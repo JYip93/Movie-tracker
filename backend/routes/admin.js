@@ -9,4 +9,6 @@ router.get("/add-movie", adminController.getAddMovie);
 
 router.post("/add-movie", adminController.postMovie);
 
+router.get("/:movie-id", adminController.getMovie);
+
 module.exports = router;
