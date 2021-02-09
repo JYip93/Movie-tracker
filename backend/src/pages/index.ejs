@@ -12,8 +12,10 @@
       <% movie.forEach(data => {%>
       <ul>
         <li>
-          <h1><a href="<%= data.id %>"><%= data.name %></a></h1>
+          <h1><a href="/<%= data.id %>"><%= data.name %></a></h1>
         </li>
+        <li><img src="<%= data.image %>" alt="<%= data.name%>" /></li>
+        <li><p><%=data.description%></p></li>
       </ul>
       <%})%>
     </main>
