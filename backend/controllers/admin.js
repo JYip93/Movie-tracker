@@ -37,3 +37,15 @@ exports.postMovie = (req, res) => {
   console.log("Movie has been added");
   res.status(201).redirect("/");
 };
+
+exports.deleteMovie = async (req, res) => {
+  const movieId = req.body.movieId;
+  const movie = await Movie.findByIdAndDelete(movieId, (data) => data);
+  try {
+    console.log(movie);
+    console.log("Deleted Movie");
+    res.redirect("/");
+  } catch (error) {
+    console.log(error);
+  }
+};
