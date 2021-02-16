@@ -26,6 +26,26 @@ exports.getAddMovie = (req, res) => {
   res.status(200).render("edit-movie");
 };
 
+exports.getEditMovie = async (req, res) => {
+  const movieId = req.params.movieId;
+  const editMode = req.query.edit;
+  if (!editMode) {
+    return res.redirect("/");
+  }
+
+  const movie = await Movie.findById(movieId);
+
+  try {
+    if (!movieId) {
+      return res.redirect("/");
+    }
+    console.log(movie);
+    res.status(200).render("edit-movie", { movie: movie, editing: editMode });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 exports.postMovie = (req, res) => {
   const { name, image, description } = req.body;
   const movie = new Movie({

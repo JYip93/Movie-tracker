@@ -13,4 +13,6 @@ router.get("/:movieId", adminController.getMovie);
 
 router.post("/delete", adminController.deleteMovie);
 
+router.get("/edit-movie/:movieId", adminController.getEditMovie);
+
 module.exports = router;
